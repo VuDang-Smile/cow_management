@@ -1,0 +1,32 @@
+# Node & package managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+.turbo/
+coverage/
+
+# Environments
+.env
+.env.*
+*.local
+
+# Editor & system
+.DS_Store
+.vscode/
+.idea/
+Thumbs.db
+
+# Caches
+.eslintcache
+.parcel-cache
+
+# Framework hosts (optional)
+.vercel
+.netlify
+
+

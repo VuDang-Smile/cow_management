@@ -1,0 +1,31 @@
+:root{--bg:#f6f7fb;--card:#ffffff;--text:#1f2937;--muted:#6b7280;--primary:#16a34a;--warning:#f59e0b;--danger:#ef4444;--border:#e5e7eb}
+*{box-sizing:border-box}html,body,#root{height:100%}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji"}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:24px}
+.appbar{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:10}
+.nav{display:flex;gap:16px;align-items:center;padding:12px 24px}
+.nav .brand{font-weight:700}
+.nav a{padding:6px 10px;border-radius:8px}
+.nav a.active{background:#eaf7ee;color:#0e7a34}
+.grid{display:grid;gap:16px}
+.col-3{grid-template-columns:1fr 1fr 1fr}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.muted{color:var(--muted)}
+.stat{font-size:28px;font-weight:700}
+.row{display:flex;gap:12px;align-items:center}
+.badge{padding:4px 8px;border-radius:999px;font-size:12px;font-weight:600}
+.badge.green{background:#e7f7ed;color:#0e7a34}
+.badge.yellow{background:#fff7e6;color:#946200}
+.badge.red{background:#ffeaea;color:#b91c1c}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{border-bottom:1px solid var(--border);padding:10px;text-align:left}
+.right{margin-left:auto}
+.section-title{font-weight:700;margin:0 0 8px 0}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{background:#111827;color:#fff;border:none;border-radius:8px;padding:8px 12px;cursor:pointer}
+.btn.secondary{background:#e5e7eb;color:#111827}
+.btn.success{background:#16a34a}
+.btn.warn{background:#f59e0b}
+.btn.danger{background:#ef4444}
+
+
