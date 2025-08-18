@@ -1,5 +1,5 @@
 import { sampleCowStatus } from '../../mocks/user'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useI18n } from '../../i18n'
 
 const statusColor = {
@@ -12,66 +12,76 @@ export default function UserHome(){
   const { t } = useI18n()
   const s = sampleCowStatus
   return (
-    <div className="grid" style={{ gap: 16 }}>
-      <header className="row" style={{ justifyContent:'space-between' }}>
-        <div className="row" style={{ gap: 8, alignItems:'center' }}>
-          <div className="badge green" style={{ width:32, height:32, display:'flex', alignItems:'center', justifyContent:'center' }}>👤</div>
-          <div>{t('hello_owner')}</div>
-        </div>
-        <div className="row" style={{ gap: 8 }}>
-          <Link to="/user/tasks" className="btn secondary">{t('daily_task')}</Link>
-          <Link to="/user/rank" className="btn secondary">{t('rank')}</Link>
-        </div>
-      </header>
+    <div className="user-home">
+      <div className="home-panel">
+        <header className="home-header">
+          <div className="owner">
+            <div className="avatar">👤</div>
+            <div>{t('hello_owner')}</div>
+          </div>
+          <div className="right" />
+        </header>
 
-      <div className="card">
-        <div className="section-title" style={{ textAlign:'center' }}>{t('cows_status')}</div>
-        <div className="grid" style={{ gridTemplateColumns:'1fr 1fr', gap: 12 }}>
-          <div className="card">
-            <div className="muted">{t('health_overall')}</div>
-            <div className={`badge ${statusColor[s.healthOverall]}`}>{s.healthOverall}</div>
-          </div>
-          <div className="card">
-            <div className="muted">{t('milk_yield')}</div>
-            <div className="row" style={{ gap: 8, alignItems:'center' }}>
-              <div className="stat" style={{ fontSize: 18 }}>{s.milkYieldLPerDay} L/day</div>
-              <span className={`badge ${s.trend==='Up'? 'green': s.trend==='Down'?'red':'yellow'}`}>{s.trend}</span>
-            </div>
-          </div>
-          <div className="card">
-            <div className="muted">{t('feeding')}</div>
-            <div className="row" style={{ alignItems:'center', gap: 8 }}>
-              <div style={{ flex:1, height:8, background:'#e5e7eb', borderRadius:999 }}>
-                <div style={{ width:`${s.feedingPercent}%`, height:'100%', background:'#16a34a', borderRadius:999 }} />
+        <div className="home-grid">
+          <div>
+            <div className="status-card">
+              <div className="title">{t('cows_status')}</div>
+              <div className="metric">
+                <span className="name">{t('health_overall')}</span>
+                <span className={`badge ${statusColor[s.healthOverall]}`}>{s.healthOverall}</span>
               </div>
-              <div className="muted">{s.feedingPercent}%</div>
+              <div className="metric">
+                <span className="name">{t('milk_yield')}</span>
+                <span className="value">{s.milkYieldLPerDay} L/day</span>
+              </div>
+              <div className="metric">
+                <span className="name">{t('feeding')}</span>
+                <span className="progress"><span className="bar"><span className="fill" style={{ width:`${s.feedingPercent}%` }} /></span><span className="muted">{s.feedingPercent}%</span></span>
+              </div>
+              <div className="metric">
+                <span className="name">{t('latest_activity')}</span>
+                <span className="value">{s.latestActivity.activity} · {Math.round(s.latestActivity.minutesAgo/60)}h</span>
+              </div>
             </div>
           </div>
-          <div className="card">
-            <div className="muted">{t('latest_activity')}</div>
-            <div>{s.latestActivity.activity} – {Math.round(s.latestActivity.minutesAgo/60)}h ago</div>
+          <div className="right-widgets">
+            <Link to="/user/tasks" className="widget-card link">
+              <div className="icon">🏁</div>
+              <div className="label">{t('daily_task')}</div>
+            </Link>
+            <Link to="/user/rank" className="widget-card link">
+              <div className="icon">📊</div>
+              <div className="label">{t('rank')}</div>
+            </Link>
           </div>
         </div>
-      </div>
 
-      <BottomBar />
+        <BottomBar />
+      </div>
     </div>
   )
 }
 
 function BottomBar(){
   const tabs = [
-    { to:'/user/home', label:'home' },
-    { to:'/user/cow', label:'cow_profile' },
-    { to:'/user/scan', label:'scan_qr' },
-    { to:'/user/reports', label:'report' },
-    { to:'/user/notifications', label:'notification' },
-  ]
+    { to:'/user/home', label:'home', icon:'🏠' },
+    { to:'/user/cow', label:'cow_profile', icon:'🐮' },
+    { to:'/user/scan', label:'scan_qr', icon:'🔳' },
+    { to:'/user/reports', label:'report', icon:'📄' },
+    { to:'/user/notifications', label:'notification', icon:'🔔' },
+  ] as const
+  const { t } = useI18n()
   return (
-    <div className="row" style={{ position:'sticky', bottom: 0, background:'#fff', border:'1px solid var(--border)', borderRadius:16, padding:8, justifyContent:'space-between' }}>
-      {tabs.map(tb=> <Link key={tb.to} to={tb.to} className="btn secondary" style={{ flex:1, textAlign:'center' }}>{useI18n().t(tb.label)}</Link>)}
-    </div>
+    <nav className="bottom-nav">
+      {tabs.map(tb=> (
+        <NavLink key={tb.to} to={tb.to} className={({isActive})=> `nav-item ${isActive? 'active':''}`}>
+          <span className="icon">{tb.icon}</span>
+          <span className="muted">{t(tb.label)}</span>
+        </NavLink>
+      ))}
+    </nav>
   )
 }
+
 
 

@@ -95,6 +95,8 @@ const DICTS: Record<Lang, Dict> = {
     or_create_with_email: 'hoặc tạo bằng email',
     email: 'Email',
     password: 'Mật khẩu',
+    remember_me: 'Ghi nhớ đăng nhập',
+    forgot_password: 'Quên mật khẩu?',
 
     // Adopt
     welcome_user: 'Chào mừng, User',
@@ -281,6 +283,8 @@ const DICTS: Record<Lang, Dict> = {
     or_create_with_email: 'またはメールで作成',
     email: 'メール',
     password: 'パスワード',
+    remember_me: 'ログイン状態を保持',
+    forgot_password: 'パスワードをお忘れですか？',
 
     welcome_user: 'ようこそ, User',
     adopt_title: '牛を里親に迎えましょう',

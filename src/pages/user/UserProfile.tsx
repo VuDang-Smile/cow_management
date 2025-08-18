@@ -1,9 +1,15 @@
 import { samplePlayer } from '../../mocks/user'
 import { useI18n } from '../../i18n'
+import { useNavigate } from 'react-router-dom'
 
 export default function UserProfile(){
   const { t } = useI18n()
   const u = samplePlayer
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    localStorage.removeItem('user_logged_in')
+    navigate('/user')
+  }
   return (
     <div className="grid" style={{ gap: 16, maxWidth: 720, margin:'0 auto' }}>
       <div className="card">
@@ -37,7 +43,7 @@ export default function UserProfile(){
       </div>
       <div className="row" style={{ justifyContent:'space-between' }}>
         <button className="btn secondary">{t('change_language')}</button>
-        <button className="btn danger">{t('logout')}</button>
+        <button className="btn danger" onClick={handleLogout}>{t('logout')}</button>
       </div>
     </div>
   )

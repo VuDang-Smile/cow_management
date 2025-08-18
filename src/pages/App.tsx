@@ -31,7 +31,7 @@ function HomeLanding(){
           <button className={`btn ${lang==='JP'? '' : 'secondary'}`} onClick={()=> setLang('JP')}>JP</button>
         </div>
         <div className="grid" style={{ gridTemplateColumns:'1fr 1fr', gap: 12 }}>
-          <Link className="btn" to="/user/home">{t('entry_user')}</Link>
+          <Link className="btn" to="/user">{t('entry_user')}</Link>
           <Link className="btn secondary" to="/farm">{t('entry_farm')}</Link>
         </div>
       </div>
