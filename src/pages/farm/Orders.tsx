@@ -1,6 +1,6 @@
-import Card from '../components/Card'
-import { orders } from '../mocks/data'
-import { OrderStatus } from '../interfaces'
+import Card from '../../components/Card'
+import { orders } from '../../mocks/data'
+import { OrderStatus } from '../../interfaces'
 
 export default function Orders(){
   return (
@@ -26,6 +26,5 @@ export default function Orders(){
     </div>
   )
 }
-
 
 

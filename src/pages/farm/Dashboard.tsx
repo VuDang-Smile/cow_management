@@ -1,6 +1,6 @@
-import Card from '../components/Card'
-import Gauge from '../components/Gauge'
-import { getDashboardMetrics } from '../mocks/data'
+import Card from '../../components/Card'
+import Gauge from '../../components/Gauge'
+import { getDashboardMetrics } from '../../mocks/data'
 
 export default function Dashboard(){
   const metrics = getDashboardMetrics()

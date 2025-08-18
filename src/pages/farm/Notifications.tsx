@@ -1,5 +1,5 @@
-import Card from '../components/Card'
-import { notifications } from '../mocks/data'
+import Card from '../../components/Card'
+import { notifications } from '../../mocks/data'
 
 export default function Notifications(){
   return (
@@ -20,6 +20,5 @@ export default function Notifications(){
     </Card>
   )
 }
-
 
 

@@ -1,5 +1,5 @@
-import Card from '../components/Card'
-import { users } from '../mocks/data'
+import Card from '../../components/Card'
+import { users } from '../../mocks/data'
 
 export default function Settings(){
   return (
@@ -57,6 +57,5 @@ export default function Settings(){
     </div>
   )
 }
-
 
 

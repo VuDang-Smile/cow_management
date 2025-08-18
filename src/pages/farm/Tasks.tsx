@@ -1,6 +1,6 @@
-import Card from '../components/Card'
-import { tasks } from '../mocks/data'
-import { Task, TaskType } from '../interfaces'
+import Card from '../../components/Card'
+import { tasks } from '../../mocks/data'
+import { Task, TaskType } from '../../interfaces'
 import { useMemo, useState } from 'react'
 
 export default function Tasks(){
@@ -68,6 +68,5 @@ export default function Tasks(){
     </div>
   )
 }
-
 
 

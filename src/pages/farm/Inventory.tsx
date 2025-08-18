@@ -1,5 +1,5 @@
-import Card from '../components/Card'
-import { inventoryItems } from '../mocks/data'
+import Card from '../../components/Card'
+import { inventoryItems } from '../../mocks/data'
 
 export default function Inventory(){
   const low = inventoryItems.filter(i=> i.status==='Sắp hết')
@@ -59,6 +59,5 @@ export default function Inventory(){
     </div>
   )
 }
-
 
 

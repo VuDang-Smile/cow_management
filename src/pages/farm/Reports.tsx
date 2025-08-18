@@ -1,5 +1,5 @@
-import Card from '../components/Card'
-import { reportDailyMilk, reportSupplyDemand, employeePerformance } from '../mocks/data'
+import Card from '../../components/Card'
+import { reportDailyMilk, reportSupplyDemand, employeePerformance } from '../../mocks/data'
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, Legend, Bar, BarChart } from 'recharts'
 
 export default function Reports(){

@@ -1,6 +1,6 @@
-import Card from '../components/Card'
-import { cows } from '../mocks/data'
-import { CowHealthStatus } from '../interfaces'
+import Card from '../../components/Card'
+import { cows } from '../../mocks/data'
+import { CowHealthStatus } from '../../interfaces'
 import { useMemo, useState } from 'react'
 
 export default function Cows(){
