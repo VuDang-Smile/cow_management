@@ -1,11 +1,13 @@
 import Card from '../../components/Card'
-import { orders } from '../../mocks/data'
+import { orders } from '../../mocks/farm'
 import { OrderStatus } from '../../interfaces'
+import { useI18n } from '../../i18n'
 
 export default function Orders(){
+  const { t } = useI18n()
   return (
     <div className="grid" style={{ gap: 16 }}>
-      <Card title="Danh sách đơn hàng" rightSlot={<button className="btn success">+ Tạo đơn hàng</button>}>
+      <Card title={t('orders_list')} rightSlot={<button className="btn success">+ {t('create_order')}</button>}>
         <div className="grid" style={{ gridTemplateColumns:'repeat(3, 1fr)', gap: 12 }}>
           {orders.map(o=> (
             <div className="card" key={o.id}>
@@ -13,11 +15,11 @@ export default function Orders(){
                 <div className="section-title">{o.id}</div>
                 <div className={`badge ${o.status===OrderStatus.Completed? 'green': o.status===OrderStatus.Cancelled? 'red':'yellow'}`}>{o.status}</div>
               </div>
-              <div className="muted">Khách hàng: {o.customerName}</div>
-              <div className="muted">Sản phẩm: {o.products.map(p=> `${p.name} x${p.quantity}${p.unit}`).join(', ')}</div>
-              <div className="muted">Giao ngày: {new Date(o.deliveryDate).toLocaleDateString('vi-VN')}</div>
+              <div className="muted">{t('customer')}: {o.customerName}</div>
+              <div className="muted">{t('products')}: {o.products.map(p=> `${(p as any).nameKey ? t((p as any).nameKey) : p.name} x${p.quantity}${p.unit}`).join(', ')}</div>
+              <div className="muted">{t('delivery_date')}: {new Date(o.deliveryDate).toLocaleDateString('vi-VN')}</div>
               <div className="actions" style={{ marginTop: 8 }}>
-                <button className="btn secondary">Xem chi tiết</button>
+                <button className="btn secondary">{t('view_detail')}</button>
               </div>
             </div>
           ))}

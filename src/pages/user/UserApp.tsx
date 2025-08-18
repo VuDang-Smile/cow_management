@@ -1,13 +1,14 @@
 import { NavLink, Route, Routes } from 'react-router-dom'
-
-function UserHome() {
-  return (
-    <div>
-      <h2>Welcome to User Portal</h2>
-      <p>This is a placeholder for user-specific pages.</p>
-    </div>
-  )
-}
+import Auth from './Auth'
+import Adopt from './Adopt'
+import UserHome from './Home'
+import CowProfile from './CowProfile'
+import ScanQR from './ScanQR'
+import UserReports from './Reports'
+import UserNotifications from './Notifications'
+import DailyTasks from './DailyTasks'
+import Rank from './Rank'
+import UserProfile from './UserProfile'
 
 export default function UserApp() {
   return (
@@ -21,6 +22,17 @@ export default function UserApp() {
       <div className="container">
         <Routes>
           <Route index element={<UserHome/>} />
+          <Route path="login" element={<Auth/>} />
+          <Route path="signup" element={<Auth/>} />
+          <Route path="adopt" element={<Adopt/>} />
+          <Route path="home" element={<UserHome/>} />
+          <Route path="cow" element={<CowProfile/>} />
+          <Route path="scan" element={<ScanQR/>} />
+          <Route path="reports" element={<UserReports/>} />
+          <Route path="notifications" element={<UserNotifications/>} />
+          <Route path="tasks" element={<DailyTasks/>} />
+          <Route path="rank" element={<Rank/>} />
+          <Route path="profile" element={<UserProfile/>} />
         </Routes>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import Card from '../../components/Card'
-import { users } from '../../mocks/data'
+import { users } from '../../mocks/farm'
 
 export default function Settings(){
   return (

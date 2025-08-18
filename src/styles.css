@@ -28,4 +28,8 @@ a{color:inherit;text-decoration:none}
 .btn.warn{background:#f59e0b}
 .btn.danger{background:#ef4444}
 
+/* Pills for Auth tabs */
+.pill{padding:8px 12px;border-radius:999px;border:1px solid var(--border)}
+.pill.active{background:#e7f7ed;color:#0e7a34;border-color:#b6e6c3}
+
 

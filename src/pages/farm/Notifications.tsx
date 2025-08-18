@@ -1,5 +1,5 @@
 import Card from '../../components/Card'
-import { notifications } from '../../mocks/data'
+import { notifications } from '../../mocks/farm'
 
 export default function Notifications(){
   return (
