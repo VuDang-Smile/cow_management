@@ -62,7 +62,7 @@ export const cows: Cow[] = Array.from({ length: 18 }).map((_, i) => {
     predictedMilkNext24h: predicted24,
     predictedMilkNext7Days: predicted7,
     influencingFactors: [
-      i % 4 === 0 ? 'Sức khỏe tốt' : i % 4 === 1 ? 'Sắp tới chu kỳ động dục' : 'Bị ảnh hưởng bởi thời tiết',
+      i % 4 === 0 ? 'factor_health_good' : i % 4 === 1 ? 'factor_estrus_soon' : 'factor_weather_impact',
     ],
   }
 })

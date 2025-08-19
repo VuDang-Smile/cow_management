@@ -4,7 +4,8 @@ import { OrderStatus } from '../../interfaces'
 import { useI18n } from '../../i18n'
 
 export default function Orders(){
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  const locale = lang === 'JP' ? 'ja-JP' : 'vi-VN'
   return (
     <div className="grid" style={{ gap: 16 }}>
       <Card title={t('orders_list')} rightSlot={<button className="btn success">+ {t('create_order')}</button>}>
@@ -17,7 +18,7 @@ export default function Orders(){
               </div>
               <div className="muted">{t('customer')}: {o.customerName}</div>
               <div className="muted">{t('products')}: {o.products.map(p=> `${(p as any).nameKey ? t((p as any).nameKey) : p.name} x${p.quantity}${p.unit}`).join(', ')}</div>
-              <div className="muted">{t('delivery_date')}: {new Date(o.deliveryDate).toLocaleDateString('vi-VN')}</div>
+              <div className="muted">{t('delivery_date')}: {new Date(o.deliveryDate).toLocaleDateString(locale)}</div>
               <div className="actions" style={{ marginTop: 8 }}>
                 <button className="btn secondary">{t('view_detail')}</button>
               </div>

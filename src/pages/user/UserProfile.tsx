@@ -3,7 +3,8 @@ import { useI18n } from '../../i18n'
 import { useNavigate } from 'react-router-dom'
 
 export default function UserProfile(){
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  const locale = lang === 'JP' ? 'ja-JP' : 'vi-VN'
   const u = samplePlayer
   const navigate = useNavigate()
   const handleLogout = () => {
@@ -26,7 +27,7 @@ export default function UserProfile(){
         <div className="grid" style={{ gridTemplateColumns:'1fr 1fr', gap: 8 }}>
           <div>Tên bò: <b>{u.adoptedCowId}</b></div>
           <div>Trang trại: <b>{u.adoptedCowFarm?.name} – {u.adoptedCowFarm?.region}</b></div>
-          <div>Bắt đầu: <b>{u.adoptionStartDate?.toLocaleDateString('vi-VN')}</b></div>
+          <div>Bắt đầu: <b>{u.adoptionStartDate?.toLocaleDateString(locale)}</b></div>
         </div>
       </div>
       <div className="card">

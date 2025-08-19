@@ -4,7 +4,8 @@ import { getDashboardMetrics } from '../../mocks/farm'
 import { useI18n } from '../../i18n'
 
 export default function Dashboard(){
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  const locale = lang === 'JP' ? 'ja-JP' : 'vi-VN'
   const metrics = getDashboardMetrics()
   const topHealth = Object.entries(metrics.healthSummary)
     .sort((a,b)=> b[1]-a[1])[0]
@@ -95,7 +96,7 @@ export default function Dashboard(){
                   <td>
                     <span className={`badge ${task.type==='Nhiệm vụ Chiến lược' ? 'yellow':'green'}`}>{task.type==='Nhiệm vụ Chiến lược' ? t('task_type_strategic') : t('task_type_routine')}</span>
                   </td>
-                  <td>{new Date(task.dueDate).toLocaleDateString('vi-VN')}</td>
+                  <td>{new Date(task.dueDate).toLocaleDateString(locale)}</td>
                   <td>{task.isCompleted ? t('completed') : t('in_progress')}</td>
                 </tr>
               ))}

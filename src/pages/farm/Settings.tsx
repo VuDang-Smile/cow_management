@@ -1,7 +1,10 @@
 import Card from '../../components/Card'
 import { users } from '../../mocks/farm'
+import { useI18n } from '../../i18n'
 
 export default function Settings(){
+  const { lang } = useI18n()
+  const locale = lang === 'JP' ? 'ja-JP' : 'vi-VN'
   return (
     <div className="grid" style={{ gap: 16 }}>
       <Card title="Cài đặt Trang trại">
@@ -43,7 +46,7 @@ export default function Settings(){
                 <td>{u.fullName}</td>
                 <td>{u.email}</td>
                 <td>{u.role}</td>
-                <td>{new Date(u.createdAt).toLocaleDateString('vi-VN')}</td>
+                <td>{new Date(u.createdAt).toLocaleDateString(locale)}</td>
                 <td>{u.status}</td>
                 <td className="actions">
                   <button className="btn secondary">Sửa</button>

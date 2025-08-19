@@ -4,7 +4,8 @@ import { useI18n } from '../../i18n'
 import { NavLink } from 'react-router-dom'
 
 export default function CowProfile(){
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  const locale = lang === 'JP' ? 'ja-JP' : 'vi-VN'
   const cow = cows[0]
   return (
     <div className="user-home">
@@ -23,7 +24,7 @@ export default function CowProfile(){
             <div className="grid" style={{ gridTemplateColumns:'1fr 1fr', gap: 8 }}>
               <div>Mã số: <b>{cow.id}</b></div>
               <div>Giống: <b>{cow.breed}</b></div>
-              <div>Ngày sinh: <b>{new Date(cow.birthDate).toLocaleDateString('vi-VN')}</b></div>
+              <div>Ngày sinh: <b>{new Date(cow.birthDate).toLocaleDateString(locale)}</b></div>
               <div>{t('origin')}: <b>ABC Farm</b></div>
             </div>
           </div>

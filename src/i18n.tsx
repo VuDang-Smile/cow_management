@@ -40,6 +40,9 @@ const DICTS: Record<Lang, Dict> = {
     rec_type_alert: 'Cảnh báo',
     rec_type_opportunity: 'Cơ hội',
     rec_type_action: 'Hành động',
+    ai_yield_analysis: 'Phân tích Dự báo Sản lượng (AI-Powered)',
+    ai_analyze: 'Phân tích ngay',
+    ai_analyzing: 'Đang phân tích...',
     alerts_and_tasks: 'Cảnh báo & Nhiệm vụ Ưu tiên',
     smart_alerts: 'Cảnh báo Thông minh',
     alert: 'Cảnh báo',
@@ -55,6 +58,7 @@ const DICTS: Record<Lang, Dict> = {
     completed: 'Hoàn thành',
     in_progress: 'Đang thực hiện',
     filters: 'Bộ lọc',
+    all: 'Tất cả',
     search_by_id: 'Tìm theo mã',
     all_health: 'Tất cả tình trạng',
     all_breeds: 'Tất cả giống',
@@ -64,6 +68,10 @@ const DICTS: Record<Lang, Dict> = {
     factors: 'Yếu tố',
     add_log: 'Ghi nhật ký',
     delete: 'Xóa',
+    // Factors (AI analysis)
+    factor_health_good: 'Sức khỏe tốt',
+    factor_estrus_soon: 'Sắp tới chu kỳ động dục',
+    factor_weather_impact: 'Bị ảnh hưởng bởi thời tiết',
     farm_report_milk_14d: 'Báo cáo sản lượng sữa (14 ngày)',
     farm_report_supply_demand: 'Báo cáo Tối ưu hóa Cung - Cầu',
     actual_production: 'Sản lượng Thực tế',
@@ -248,7 +256,11 @@ const DICTS: Record<Lang, Dict> = {
     task_type_routine: '定例タスク',
     completed: '完了',
     in_progress: '進行中',
+    ai_yield_analysis: 'AI予測生産分析',
+    ai_analyze: '今すぐ分析',
+    ai_analyzing: '分析中...',
     filters: 'フィルター',
+    all: 'すべて',
     search_by_id: 'IDで検索',
     all_health: '全ての健康状態',
     all_breeds: '全ての品種',
@@ -258,6 +270,10 @@ const DICTS: Record<Lang, Dict> = {
     factors: '要因',
     add_log: '日誌を追加',
     delete: '削除',
+    // Factors (AI analysis)
+    factor_health_good: '健康状態が良好',
+    factor_estrus_soon: '発情周期が近い',
+    factor_weather_impact: '天候の影響を受けている',
     farm_report_milk_14d: '搾乳量レポート（14日）',
     farm_report_supply_demand: '需給最適化レポート',
     actual_production: '実績生産量',
@@ -394,7 +410,7 @@ type I18nContextType = {
 const I18nContext = createContext<I18nContextType | null>(null)
 
 export function I18nProvider({ children }: { children: React.ReactNode }){
-  const [lang, setLang] = useState<Lang>(() => (localStorage.getItem('lang') as Lang) || 'VN')
+  const [lang, setLang] = useState<Lang>(() => (localStorage.getItem('lang') as Lang) || 'JP')
   const value = useMemo<I18nContextType>(() => ({
     lang,
     setLang: (l: Lang) => { localStorage.setItem('lang', l); setLang(l) },

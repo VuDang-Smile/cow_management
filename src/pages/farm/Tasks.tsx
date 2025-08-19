@@ -1,9 +1,12 @@
 import Card from '../../components/Card'
 import { tasks } from '../../mocks/data'
 import { Task, TaskType } from '../../interfaces'
+import { useI18n } from '../../i18n'
 import { useMemo, useState } from 'react'
 
 export default function Tasks(){
+  const { lang } = useI18n()
+  const locale = lang === 'JP' ? 'ja-JP' : 'vi-VN'
   const [filter, setFilter] = useState<'all'|'strategic'|'routine'>('all')
   const [list, setList] = useState<Task[]>(tasks)
 
@@ -57,7 +60,7 @@ export default function Tasks(){
                 <td>{t.title}</td>
                 <td>{t.type}</td>
                 <td>{t.assignedTo}</td>
-                <td>{new Date(t.dueDate).toLocaleDateString('vi-VN')}</td>
+                <td>{new Date(t.dueDate).toLocaleDateString(locale)}</td>
                 <td>{t.isCompleted? 'Hoàn thành':'Đang thực hiện'}</td>
                 <td><button className="btn" onClick={()=> toggle(t.id)}>{t.isCompleted? 'Bỏ hoàn thành':'Đánh dấu xong'}</button></td>
               </tr>
