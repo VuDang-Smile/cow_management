@@ -10,6 +10,8 @@ import UserNotifications from './Notifications'
 import DailyTasks from './DailyTasks'
 import Rank from './Rank'
 import UserProfile from './UserProfile'
+import UserNews from './News'
+import NewsDetail from './NewsDetail'
 
 export default function UserApp() {
   const location = useLocation()
@@ -41,6 +43,8 @@ export default function UserApp() {
             <Route path="tasks" element={<DailyTasks/>} />
             <Route path="rank" element={<Rank/>} />
             <Route path="profile" element={<UserProfile/>} />
+            <Route path="news" element={<UserNews/>} />
+            <Route path="news/:id" element={<NewsDetail/>} />
         </Routes>
       </div>
     </div>

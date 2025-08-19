@@ -127,4 +127,18 @@ export interface PlayerNotification {
   params?: Record<string, any>
 }
 
+// User News items for the User app
+export interface UserNewsItem {
+  id: string
+  titleJa: string
+  excerptJa: string
+  imageUrl: string
+  categoryJa: string
+  publishedAt: string
+  sourceName?: string
+  sourceUrl?: string
+  tagsJa?: string[]
+  contentJa?: string[]
+}
+
 

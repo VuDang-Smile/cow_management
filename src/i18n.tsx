@@ -145,6 +145,7 @@ const DICTS: Record<Lang, Dict> = {
     scan_qr: 'Quét QR',
     report: 'Báo cáo',
     notification: 'Thông báo',
+    news: 'Tin tức',
 
     // Date ranges
     range_day: 'Ngày',
@@ -407,6 +408,7 @@ const DICTS: Record<Lang, Dict> = {
     scan_qr: 'QRスキャン',
     report: 'レポート',
     notification: '通知',
+    news: 'ニュース',
 
     // Date ranges
     range_day: '日',

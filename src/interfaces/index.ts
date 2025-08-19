@@ -22,4 +22,5 @@ export type {
   FeedingStats,
   ActivityStats,
   MilkStats,
+  UserNewsItem,
 } from './user.ts'
