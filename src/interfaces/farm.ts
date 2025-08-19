@@ -44,6 +44,7 @@ export enum InventoryStatus {
   Sufficient = "Sufficient",
   Low = "Low",
   OutOfStock = "OutOfStock",
+  Available = "Available",
 }
 
 export enum InventoryCategory {

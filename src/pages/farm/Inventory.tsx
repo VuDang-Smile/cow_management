@@ -1,12 +1,13 @@
 import Card from '../../components/Card'
 import { inventoryItems } from '../../mocks/farm'
 import { useI18n } from '../../i18n'
+import { InventoryStatus } from '../../interfaces'
 
 export default function Inventory(){
   const { t } = useI18n()
-  const low = inventoryItems.filter(i=> i.status==='Sắp hết')
-  const out = inventoryItems.filter(i=> i.status==='Hết hàng')
-  const ok = inventoryItems.filter(i=> i.status==='Đủ hàng')
+  const low = inventoryItems.filter(i=> i.status===InventoryStatus.Low)
+  const out = inventoryItems.filter(i=> i.status===InventoryStatus.OutOfStock) 
+  const ok = inventoryItems.filter(i=> i.status===InventoryStatus.Available)
 
   return (
     <div className="grid" style={{ gap: 16 }}>
@@ -46,7 +47,7 @@ export default function Inventory(){
                 <td>{i.quantity}</td>
                 <td>{i.unit}</td>
                 <td>
-                  <span className={`badge ${i.status==='Đủ hàng'?'green': i.status==='Sắp hết'?'yellow':'red'}`}>{i.status}</span>
+                  <span className={`badge ${i.status === InventoryStatus.Available ? 'green' : i.status === InventoryStatus.Low ? 'yellow' : 'red'}`}>{i.status}</span>
                 </td>
                 <td className="actions">
                   <button className="btn secondary">{t('view_detail')}</button>

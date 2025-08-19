@@ -1,5 +1,5 @@
 import { sampleCowStatus } from '../../mocks/user'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import BottomBar from './BottomBar'
 import { useI18n } from '../../i18n'
 
