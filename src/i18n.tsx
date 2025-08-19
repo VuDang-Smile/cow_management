@@ -121,6 +121,11 @@ const DICTS: Record<Lang, Dict> = {
     report: 'Báo cáo',
     notification: 'Thông báo',
 
+    // Date ranges
+    range_day: 'Ngày',
+    range_week: 'Tuần',
+    range_month: 'Tháng',
+
     // Cow profile
     identity: 'Thông tin định danh',
     origin: 'Nguồn gốc',
@@ -306,6 +311,11 @@ const DICTS: Record<Lang, Dict> = {
     scan_qr: 'QRスキャン',
     report: 'レポート',
     notification: '通知',
+
+    // Date ranges
+    range_day: '日',
+    range_week: '週',
+    range_month: '月',
 
     identity: '識別情報',
     origin: '由来',

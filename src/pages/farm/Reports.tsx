@@ -24,9 +24,9 @@ export default function Reports(){
     <div className="grid" style={{ gap: 16 }}>
       <div className="row" style={{ justifyContent: 'flex-end' }}>
         <div className="actions">
-          <button className={`pill ${range === 'day' ? 'active' : ''}`} onClick={() => setRange('day')}>Ngày</button>
-          <button className={`pill ${range === 'week' ? 'active' : ''}`} onClick={() => setRange('week')}>Tuần</button>
-          <button className={`pill ${range === 'month' ? 'active' : ''}`} onClick={() => setRange('month')}>Tháng</button>
+          <button className={`pill ${range === 'day' ? 'active' : ''}`} onClick={() => setRange('day')}>{t('range_day')}</button>
+          <button className={`pill ${range === 'week' ? 'active' : ''}`} onClick={() => setRange('week')}>{t('range_week')}</button>
+          <button className={`pill ${range === 'month' ? 'active' : ''}`} onClick={() => setRange('month')}>{t('range_month')}</button>
         </div>
       </div>
       <Card title={t('farm_report_milk_14d')}>
