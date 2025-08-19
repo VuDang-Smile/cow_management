@@ -1,11 +1,18 @@
 import Card from '../../components/Card'
-import { reportDailyMilk } from '../../mocks/farm'
+import { reportDailyMilk, reportMilkWeekly, reportMilkMonthly } from '../../mocks/farm'
 import { useI18n } from '../../i18n'
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts'
 import { NavLink } from 'react-router-dom'
+import { useMemo, useState } from 'react'
 
 export default function UserReports(){
   const { t } = useI18n()
+  const [range, setRange] = useState<'week' | 'month' | 'day'>('day')
+  const data = useMemo(() => {
+    if(range === 'week') return reportMilkWeekly
+    if(range === 'month') return reportMilkMonthly
+    return reportDailyMilk.slice(-14)
+  }, [range])
   return (
     <div className="user-home">
       <div className="home-panel">
@@ -28,8 +35,15 @@ export default function UserReports(){
           </Card>
 
           <Card title={t('productivity_14d')}>
+            <div className="row" style={{ justifyContent: 'flex-end', marginBottom: 8 }}>
+              <div className="actions">
+                <button className={`pill ${range === 'day' ? 'active' : ''}`} onClick={() => setRange('day')}>Ngày</button>
+                <button className={`pill ${range === 'week' ? 'active' : ''}`} onClick={() => setRange('week')}>Tuần</button>
+                <button className={`pill ${range === 'month' ? 'active' : ''}`} onClick={() => setRange('month')}>Tháng</button>
+              </div>
+            </div>
             <ResponsiveContainer width="100%" height={280}>
-              <LineChart data={reportDailyMilk}>
+              <LineChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" />
                 <YAxis />

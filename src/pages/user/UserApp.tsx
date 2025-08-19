@@ -23,21 +23,26 @@ export default function UserApp() {
     return () => window.removeEventListener('storage', onStorage)
   }, [])
   return (
-    <div className="container">
-      <Routes>
-          <Route index element={isLoggedIn ? <Navigate to="adopt" replace/> : <Auth/>} />
-          <Route path="login" element={<Auth/>} />
-          <Route path="signup" element={<Auth/>} />
-          <Route path="adopt" element={<Adopt/>} />
-          <Route path="home" element={isLoggedIn ? <UserHome/> : <Navigate to="/user/login" replace/>} />
-          <Route path="cow" element={<CowProfile/>} />
-          <Route path="scan" element={<ScanQR/>} />
-          <Route path="reports" element={<UserReports/>} />
-          <Route path="notifications" element={<UserNotifications/>} />
-          <Route path="tasks" element={<DailyTasks/>} />
-          <Route path="rank" element={<Rank/>} />
-          <Route path="profile" element={<UserProfile/>} />
-      </Routes>
+    <div className="user-layout">
+      <video className="user-bg-video" autoPlay loop muted playsInline aria-hidden="true">
+        <source src="/background.mp4" type="video/mp4" />
+      </video>
+      <div className="user-content container">
+        <Routes>
+            <Route index element={isLoggedIn ? <Navigate to="adopt" replace/> : <Auth/>} />
+            <Route path="login" element={<Auth/>} />
+            <Route path="signup" element={<Auth/>} />
+            <Route path="adopt" element={<Adopt/>} />
+            <Route path="home" element={isLoggedIn ? <UserHome/> : <Navigate to="/user/login" replace/>} />
+            <Route path="cow" element={<CowProfile/>} />
+            <Route path="scan" element={<ScanQR/>} />
+            <Route path="reports" element={<UserReports/>} />
+            <Route path="notifications" element={<UserNotifications/>} />
+            <Route path="tasks" element={<DailyTasks/>} />
+            <Route path="rank" element={<Rank/>} />
+            <Route path="profile" element={<UserProfile/>} />
+        </Routes>
+      </div>
     </div>
   )
 }

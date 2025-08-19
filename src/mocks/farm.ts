@@ -241,16 +241,16 @@ export const notifications: AppNotification[] = [
 ]
 
 // --- REPORTS DATA ------------------------------------------------------
-export const reportDailyMilk = Array.from({ length: 14 }).map((_, i) => {
-  const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() - (13 - i))
+export const reportDailyMilk = Array.from({ length: 30 }).map((_, i) => {
+  const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() - (29 - i))
   return {
     date: `${date.getDate()}/${date.getMonth() + 1}`,
     value: 3200 + randomInt(-150, 200),
   }
 })
 
-export const reportSupplyDemand = Array.from({ length: 14 }).map((_, i) => {
-  const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() - (13 - i))
+export const reportSupplyDemand = Array.from({ length: 30 }).map((_, i) => {
+  const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() - (29 - i))
   const supply = 23000 + randomInt(-800, 600)
   const actual = supply + randomInt(-1200, 1200)
   const demand = 24000 + randomInt(-600, 800)
@@ -267,6 +267,53 @@ export const employeePerformance = [
   { name: 'Trần Thị B', tasks: 22 },
   { name: 'Lê Văn C', tasks: 15 },
 ]
+
+// --- Aggregated Weekly / Monthly Reports --------------------------------
+const formatMonth = (d: Date) => `${d.getMonth() + 1}/${String(d.getFullYear()).slice(-2)}`
+
+export const reportMilkWeekly = Array.from({ length: 8 }).map((_, i) => {
+  const startOfWeek = new Date(today)
+  startOfWeek.setDate(today.getDate() - (7 * (7 - i)))
+  return {
+    date: `Tuần ${i + 1}`,
+    value: 3200 * 7 + randomInt(-600, 800),
+  }
+})
+
+export const reportMilkMonthly = Array.from({ length: 12 }).map((_, i) => {
+  const d = new Date(today.getFullYear(), today.getMonth() - (11 - i), 1)
+  return {
+    date: formatMonth(d),
+    value: 3200 * 30 + randomInt(-3000, 3500),
+  }
+})
+
+export const reportSupplyDemandWeekly = Array.from({ length: 8 }).map((_, i) => {
+  const startOfWeek = new Date(today)
+  startOfWeek.setDate(today.getDate() - (7 * (7 - i)))
+  const supply = 23000 * 7 + randomInt(-5000, 5000)
+  const actual = supply + randomInt(-6000, 6000)
+  const demand = 24000 * 7 + randomInt(-4000, 6000)
+  return {
+    date: `Tuần ${i + 1}`,
+    supply,
+    actual,
+    demand,
+  }
+})
+
+export const reportSupplyDemandMonthly = Array.from({ length: 12 }).map((_, i) => {
+  const d = new Date(today.getFullYear(), today.getMonth() - (11 - i), 1)
+  const supply = 23000 * 30 + randomInt(-20000, 22000)
+  const actual = supply + randomInt(-24000, 24000)
+  const demand = 24000 * 30 + randomInt(-18000, 22000)
+  return {
+    date: formatMonth(d),
+    supply,
+    actual,
+    demand,
+  }
+})
 
 // --- DASHBOARD METRICS -------------------------------------------------
 export const getDashboardMetrics = (): DashboardMetrics => {
