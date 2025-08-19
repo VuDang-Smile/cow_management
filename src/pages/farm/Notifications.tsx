@@ -1,9 +1,11 @@
 import Card from '../../components/Card'
 import { notifications } from '../../mocks/farm'
+import { useI18n } from '../../i18n'
 
 export default function Notifications(){
+  const { t } = useI18n()
   return (
-    <Card title="Thông báo mới nhất">
+    <Card title={t('latest_notifications')}>
       <div className="grid" style={{ gap: 8 }}>
         {notifications.map(n=> (
           <div key={n.id} className="card">

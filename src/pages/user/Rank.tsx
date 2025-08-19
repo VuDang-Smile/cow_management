@@ -21,11 +21,11 @@ export default function Rank(){
             <thead>
               <tr>
                 <th>#</th>
-                <th>Trang trại</th>
-                <th>Tỉnh</th>
-                <th>Sản lượng (L/ngày)</th>
-                <th>Điểm sức khỏe</th>
-                <th>Tỉ lệ hoàn thành</th>
+                <th>{t('farm_col')}</th>
+                <th>{t('province')}</th>
+                <th>{t('production_per_day')}</th>
+                <th>{t('health_score')}</th>
+                <th>{t('completion_rate')}</th>
               </tr>
             </thead>
             <tbody>

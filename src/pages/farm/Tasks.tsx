@@ -5,7 +5,7 @@ import { useI18n } from '../../i18n'
 import { useMemo, useState } from 'react'
 
 export default function Tasks(){
-  const { lang } = useI18n()
+  const { lang, t } = useI18n()
   const locale = lang === 'JP' ? 'ja-JP' : 'vi-VN'
   const [filter, setFilter] = useState<'all'|'strategic'|'routine'>('all')
   const [list, setList] = useState<Task[]>(tasks)
@@ -15,14 +15,14 @@ export default function Tasks(){
   ), [list, filter])
 
   const addTask = () => {
-    const title = prompt('Tên nhiệm vụ?')
+    const title = prompt(t('task_name_question'))
     if(!title) return
     const newTask: Task = {
       id: `T${Math.random().toString(36).slice(2,7)}`,
       title,
       description: '',
       dueDate: new Date(),
-      assignedTo: 'Nhân viên mới',
+      assignedTo: t('new_staff'),
       type: TaskType.Routine,
       isCompleted: false,
     }
@@ -33,36 +33,36 @@ export default function Tasks(){
 
   return (
     <div className="grid" style={{ gap: 16 }}>
-      <Card title="Danh sách nhiệm vụ" rightSlot={
+      <Card title={t('tasks_list')} rightSlot={
         <div className="row" style={{ gap: 8 }}>
           <select value={filter} onChange={e=> setFilter(e.target.value as any)}>
-            <option value="all">Tất cả</option>
-            <option value="strategic">Nhiệm vụ Chiến lược</option>
-            <option value="routine">Nhiệm vụ định kỳ</option>
+            <option value="all">{t('all')}</option>
+            <option value="strategic">{t('task_type_strategic')}</option>
+            <option value="routine">{t('task_type_routine')}</option>
           </select>
-          <button className="btn success" onClick={addTask}>+ Thêm nhiệm vụ</button>
+          <button className="btn success" onClick={addTask}>+ {t('add_task')}</button>
         </div>
       }>
         <table className="table">
           <thead>
             <tr>
-              <th>Tên</th>
-              <th>Loại</th>
-              <th>Người phụ trách</th>
-              <th>Hạn</th>
-              <th>Trạng thái</th>
+              <th>{t('name')}</th>
+              <th>{t('type')}</th>
+              <th>{t('assignee')}</th>
+              <th>{t('due')}</th>
+              <th>{t('status')}</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {filtered.map(t => (
-              <tr key={t.id}>
-                <td>{t.title}</td>
-                <td>{t.type}</td>
-                <td>{t.assignedTo}</td>
-                <td>{new Date(t.dueDate).toLocaleDateString(locale)}</td>
-                <td>{t.isCompleted? 'Hoàn thành':'Đang thực hiện'}</td>
-                <td><button className="btn" onClick={()=> toggle(t.id)}>{t.isCompleted? 'Bỏ hoàn thành':'Đánh dấu xong'}</button></td>
+            {filtered.map(tk => (
+              <tr key={tk.id}>
+                <td>{(tk as any).titleKey ? t((tk as any).titleKey) : tk.title}</td>
+                <td>{tk.type}</td>
+                <td>{tk.assignedTo}</td>
+                <td>{new Date(tk.dueDate).toLocaleDateString(locale)}</td>
+                <td>{tk.isCompleted? t('completed'): t('in_progress')}</td>
+                <td><button className="btn" onClick={()=> toggle(tk.id)}>{tk.isCompleted? t('unmark_done'): t('mark_done')}</button></td>
               </tr>
             ))}
           </tbody>

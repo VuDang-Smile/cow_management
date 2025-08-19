@@ -21,8 +21,8 @@ export default function DailyTasks(){
             {dailyTasksPlayer.map(task=> (
               <div key={task.id} className="row" style={{ justifyContent:'space-between', border:'1px solid var(--border)', borderRadius:12, padding:10 }}>
                 <div>
-                  <div className="section-title">{task.title}</div>
-                  <div className="muted">{task.description}</div>
+                  <div className="section-title">{(task as any).titleKey ? t((task as any).titleKey) : task.title}</div>
+                  <div className="muted">{(task as any).descKey ? t((task as any).descKey) : task.description}</div>
                 </div>
                 <div className="row" style={{ gap: 8, alignItems:'center' }}>
                   {task.completed ? <span className="badge green">{t('done')}</span> : <button className="btn success">{t('mark_done')}</button>}

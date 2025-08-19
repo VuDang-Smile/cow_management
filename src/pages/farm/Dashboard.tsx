@@ -55,7 +55,7 @@ export default function Dashboard(){
             {metrics.recommendations.map((r, idx)=> (
               <div key={idx} className="row" style={{ justifyContent:'space-between' }}>
                 <div>
-                  <span className={`badge ${r.type.includes('Cảnh báo') ? 'red' : r.type.includes('Cơ hội') ? 'yellow':'green'}`}>{r.type.includes('Cảnh báo') ? t('rec_type_alert') : r.type.includes('Cơ hội') ? t('rec_type_opportunity') : t('rec_type_action')}</span>
+                  <span className={`badge ${r.type.includes('RiskAlert') ? 'red' : r.type.includes('Opportunity') ? 'yellow':'green'}`}>{r.type.includes('RiskAlert') ? t('rec_type_alert') : r.type.includes('Opportunity') ? t('rec_type_opportunity') : t('rec_type_action')}</span>
                   <span style={{ marginLeft: 8 }}>{(r as any).descriptionKey ? t((r as any).descriptionKey!) : r.description}</span>
                 </div>
                 {r.actionLink && <a className="btn secondary" href={r.actionLink}>{t('view')}</a>}
@@ -94,7 +94,7 @@ export default function Dashboard(){
                   <td>{(task as any).titleKey ? t((task as any).titleKey) : task.title}</td>
                   <td>{task.assignedTo}</td>
                   <td>
-                    <span className={`badge ${task.type==='Nhiệm vụ Chiến lược' ? 'yellow':'green'}`}>{task.type==='Nhiệm vụ Chiến lược' ? t('task_type_strategic') : t('task_type_routine')}</span>
+                    <span className={`badge ${task.type==='Strategic' ? 'yellow':'green'}`}>{task.type==='Strategic' ? t('task_type_strategic') : t('task_type_routine')}</span>
                   </td>
                   <td>{new Date(task.dueDate).toLocaleDateString(locale)}</td>
                   <td>{task.isCompleted ? t('completed') : t('in_progress')}</td>

@@ -26,7 +26,7 @@ export default function Cows(){
           <input placeholder={t('search_by_id')} value={query} onChange={e=> setQuery(e.target.value)} />
           <select value={health} onChange={e=> setHealth(e.target.value)}>
             <option value="">{t('all_health')}</option>
-            {Object.values(CowHealthStatus).map(s=> <option value={s} key={s}>{s}</option>)}
+            {Object.values(CowHealthStatus).map(s=> <option value={s} key={s}>{t(`hs_${s}`)}</option>)}
           </select>
           <select value={breed} onChange={e=> setBreed(e.target.value)}>
             <option value="">{t('all_breeds')}</option>
@@ -42,7 +42,7 @@ export default function Cows(){
                 <div className="badge green">{c.breed}</div>
               </div>
               <div className="muted">{t('dob')}: {new Date(c.birthDate).toLocaleDateString(locale)}</div>
-              <div className="muted">{t('status')}: {c.healthStatus}</div>
+              <div className="muted">{t('status')}: {t(`hs_${c.healthStatus}`)}</div>
               <div className="card" style={{ background:'#f9fffb', marginTop:8 }}>
                 <div className="row" style={{ justifyContent:'space-between', marginBottom:4 }}>
                   <div className="section-title">{t('ai_yield_analysis')}</div>

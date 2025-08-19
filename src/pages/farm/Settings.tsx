@@ -3,41 +3,41 @@ import { users } from '../../mocks/farm'
 import { useI18n } from '../../i18n'
 
 export default function Settings(){
-  const { lang } = useI18n()
+  const { lang, t } = useI18n()
   const locale = lang === 'JP' ? 'ja-JP' : 'vi-VN'
   return (
     <div className="grid" style={{ gap: 16 }}>
-      <Card title="Cài đặt Trang trại">
+      <Card title={t('settings_farm')}>
         <div className="grid" style={{ gridTemplateColumns:'1fr 1fr', gap: 12 }}>
           <div className="card">
-            <div className="muted">Tên</div>
-            <input defaultValue="Trang trại Hạnh Phúc" />
-            <div className="muted">Địa chỉ</div>
-            <input defaultValue="Đức Hòa, Long An" />
-            <div className="muted">Giấy phép hoạt động</div>
-            <input defaultValue="GP-123456" />
-            <div className="muted">Ngôn ngữ</div>
+            <div className="muted">{t('name')}</div>
+            <input defaultValue="さくら牧場" />
+            <div className="muted">{t('address')}</div>
+            <input defaultValue="北海道札幌市" />
+            <div className="muted">{t('license')}</div>
+            <input defaultValue="許可-123456" />
+            <div className="muted">{t('language')}</div>
             <select defaultValue="vi">
-              <option value="vi">Tiếng Việt</option>
-              <option value="en">English</option>
+              <option value="vi">{t('vietnamese')}</option>
+              <option value="en">{t('english')}</option>
             </select>
             <div className="actions" style={{ marginTop: 8 }}>
-              <button className="btn success">Lưu</button>
+              <button className="btn success">{t('save')}</button>
             </div>
           </div>
         </div>
       </Card>
 
-      <Card title="Quản lý tài khoản" rightSlot={<button className="btn success">+ Thêm tài khoản</button>}>
+      <Card title={t('account_manage')} rightSlot={<button className="btn success">+ {t('add_account')}</button>}>
         <table className="table">
           <thead>
             <tr>
-              <th>Tên</th>
-              <th>Email</th>
-              <th>Vai trò</th>
-              <th>Ngày tạo</th>
-              <th>Trạng thái</th>
-              <th>Hành động</th>
+              <th>{t('name')}</th>
+              <th>{t('email')}</th>
+              <th>{t('role')}</th>
+              <th>{t('created_at')}</th>
+              <th>{t('status')}</th>
+              <th>{t('actions')}</th>
             </tr>
           </thead>
           <tbody>
@@ -49,8 +49,8 @@ export default function Settings(){
                 <td>{new Date(u.createdAt).toLocaleDateString(locale)}</td>
                 <td>{u.status}</td>
                 <td className="actions">
-                  <button className="btn secondary">Sửa</button>
-                  <button className="btn danger">Xóa</button>
+                  <button className="btn secondary">{t('edit')}</button>
+                  <button className="btn danger">{t('delete')}</button>
                 </td>
               </tr>
             ))}

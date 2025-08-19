@@ -1,10 +1,13 @@
 
+import { useI18n } from '../i18n'
+
 type Props = {
   value: number // 0..1 proportion where <0.33 green, <0.66 yellow, else red
   label?: string
 }
 
 export default function Gauge({ value, label }: Props) {
+  const { t } = useI18n()
   const clamped = Math.max(0, Math.min(1, value))
   const angle = -90 + clamped * 180
   const color = clamped < 0.33 ? '#16a34a' : clamped < 0.66 ? '#f59e0b' : '#ef4444'
@@ -23,9 +26,9 @@ export default function Gauge({ value, label }: Props) {
       </svg>
       {label && <div className="muted" style={{ marginTop: -8 }}>{label}</div>}
       <div className="row" style={{ gap: 20 }}>
-        <div className="badge green">Cân bằng</div>
-        <div className="badge yellow">Thiếu hụt</div>
-        <div className="badge red">Dư thừa</div>
+        <div className="badge green">{t('balanced')}</div>
+        <div className="badge yellow">{t('shortage')}</div>
+        <div className="badge red">{t('surplus')}</div>
       </div>
     </div>
   )

@@ -92,6 +92,9 @@ export interface DailyTaskItem {
   description: string
   completed: boolean
   reward?: { points?: number; items?: GameItem[] }
+  // Optional i18n keys to render localized content via DICTS
+  titleKey?: string
+  descKey?: string
 }
 
 export interface FarmRankItem {

@@ -2,16 +2,16 @@
 
 // Enum for Cow Health Status based on descriptions in COWS screen
 export enum CowHealthStatus {
-  Healthy = "Khỏe mạnh – Sản lượng ổn định",
-  UnderTreatment = "Đang điều trị – Sản lượng thấp hoặc tạm dừng",
-  Pregnant = "Mang thai – Sản lượng giảm, cần chăm sóc đặc biệt",
-  Postpartum = "Sau sinh – Sản lượng đang tăng trở lại",
-  Elderly = "Già (sản lượng giảm) – Năng suất thấp nhưng vẫn cho sữa",
-  Resting = "Nghỉ dưỡng – Tạm ngừng vắt sữa để phục hồi sức khỏe",
-  Isolated = "Bị cách ly – Do bệnh truyền nhiễm hoặc nghi ngờ bệnh",
-  Young = "Bò tơ – Bò non chưa đủ tuổi vắt sữa",
-  Cull = "Bò loại thải – Đang trong kế hoạch bán hoặc xuất chuồng",
-  Breeding = "Bò giống – Nuôi để phối giống, không tập trung khai thác sữa",
+  Healthy = "Healthy",
+  UnderTreatment = "UnderTreatment",
+  Pregnant = "Pregnant",
+  Postpartum = "Postpartum",
+  Elderly = "Elderly",
+  Resting = "Resting",
+  Isolated = "Isolated",
+  Young = "Young",
+  Cull = "Cull",
+  Breeding = "Breeding",
 }
 
 // Interface for Cow entity from COWS screen
@@ -41,17 +41,17 @@ export interface MilkProductionEntry {
 
 // Inventory
 export enum InventoryStatus {
-  Sufficient = "Đủ hàng",
-  Low = "Sắp hết",
-  OutOfStock = "Hết hàng",
+  Sufficient = "Sufficient",
+  Low = "Low",
+  OutOfStock = "OutOfStock",
 }
 
 export enum InventoryCategory {
-  Feed = "Thức ăn",
-  Medicine = "Thuốc",
-  Hygiene = "Vệ sinh",
-  Product = "Sản phẩm",
-  Other = "Khác",
+  Feed = "Feed",
+  Medicine = "Medicine",
+  Hygiene = "Hygiene",
+  Product = "Product",
+  Other = "Other",
 }
 
 export interface InventoryItem {
@@ -68,20 +68,20 @@ export interface InventoryItem {
 
 export interface InventoryHistoryEntry {
   date: Date
-  type: "Nhập" | "Xuất" | "Điều chỉnh"
+  type: "Import" | "Export" | "Adjust"
   quantity: number
   notes?: string
 }
 
 // Orders
 export enum OrderStatus {
-  New = "Đơn hàng Mới (Chờ xác nhận)",
-  Confirmed = "Đã Xác nhận (Lên kế hoạch)",
-  Preparing = "Đang chuẩn bị hàng",
-  ReadyToShip = "Sẵn sàng Giao",
-  Shipping = "Đang Giao hàng",
-  Completed = "Hoàn thành",
-  Cancelled = "Đã Hủy",
+  New = "New",
+  Confirmed = "Confirmed",
+  Preparing = "Preparing",
+  ReadyToShip = "ReadyToShip",
+  Shipping = "Shipping",
+  Completed = "Completed",
+  Cancelled = "Cancelled",
 }
 
 export interface Order {
@@ -110,8 +110,8 @@ export interface OrderHistoryEntry {
 
 // Tasks
 export enum TaskType {
-  Strategic = "Nhiệm vụ Chiến lược",
-  Routine = "Nhiệm vụ định kỳ",
+  Strategic = "Strategic",
+  Routine = "Routine",
 }
 
 export interface Task {
@@ -136,7 +136,7 @@ export interface AppNotification {
   descKey?: string
   params?: Record<string, any>
   date: Date
-  type: "Cảnh báo" | "Nhắc nhở" | "Thông tin"
+  type: "Alert" | "Reminder" | "Info"
   isRead: boolean
 }
 
@@ -179,7 +179,7 @@ export interface DashboardMetrics {
   supplyDemand: {
     farmSupplyForecast: number
     allocatedDemandForecast: number
-    gaugeStatus: "Cân bằng" | "Thiếu hụt" | "Dư thừa"
+    gaugeStatus: "Balanced" | "Shortage" | "Surplus"
   }
   recommendations: Recommendation[]
   alerts: Alert[]
@@ -187,7 +187,7 @@ export interface DashboardMetrics {
 }
 
 export interface Recommendation {
-  type: "Cảnh báo Rủi ro" | "Cơ hội" | "Hành động Đề xuất"
+  type: "RiskAlert" | "Opportunity" | "Action"
   description: string
   descriptionKey?: string
   actionLink?: string
@@ -204,12 +204,12 @@ export interface Alert {
 // Reports / Analytics
 export interface AnalyticsReport {
   type:
-    | "Sản lượng"
-    | "Tỷ lệ Sức khỏe"
-    | "Hiệu quả Nhân viên"
-    | "Xu hướng"
-    | "Cung-Cầu"
-    | "Hiệu quả Chi phí"
+    | "Production"
+    | "HealthRate"
+    | "EmployeeEfficiency"
+    | "Trend"
+    | "SupplyDemand"
+    | "CostEfficiency"
   data: any
   analysis: string
 }

@@ -42,7 +42,7 @@ export const cows: Cow[] = Array.from({ length: 18 }).map((_, i) => {
     return {
       date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - (13 - d)),
       amount: randomInt(18, 28) - (healthStatus === CowHealthStatus.UnderTreatment ? 8 : 0),
-      unit: 'lít',
+      unit: 'L',
     }
   })
   const predicted24 = randomInt(18, 28)
@@ -79,8 +79,8 @@ export const inventoryItems: InventoryItem[] = [
     status: InventoryStatus.Low,
     value: 850000,
     history: [
-      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 4), type: 'Nhập', quantity: 100 },
-      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1), type: 'Xuất', quantity: 60 },
+      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 4), type: 'Import', quantity: 100 },
+      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1), type: 'Export', quantity: 60 },
     ],
   },
   {
@@ -93,7 +93,7 @@ export const inventoryItems: InventoryItem[] = [
     status: InventoryStatus.Sufficient,
     value: 2200000,
     history: [
-      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 8), type: 'Nhập', quantity: 12 },
+      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 8), type: 'Import', quantity: 12 },
     ],
   },
   {
@@ -106,7 +106,7 @@ export const inventoryItems: InventoryItem[] = [
     status: InventoryStatus.OutOfStock,
     value: 0,
     history: [
-      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 2), type: 'Xuất', quantity: 3 },
+      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 2), type: 'Export', quantity: 3 },
     ],
   },
   {
@@ -119,8 +119,8 @@ export const inventoryItems: InventoryItem[] = [
     status: InventoryStatus.Sufficient,
     value: 14400000,
     history: [
-      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1), type: 'Nhập', quantity: 500 },
-      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1), type: 'Xuất', quantity: 20 },
+      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1), type: 'Import', quantity: 500 },
+      { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1), type: 'Export', quantity: 20 },
     ],
   },
 ]
@@ -129,29 +129,35 @@ export const inventoryItems: InventoryItem[] = [
 export const tasks: Task[] = [
   {
     id: 'T001',
-    title: 'Tạo đơn hàng thức ăn tăng sản lượng',
-    description: 'Nhập thêm Thức ăn A cho đàn bò nhóm #3',
+    title: '',
+    titleKey: 'task_create_feed_order',
+    description: '',
+    descriptionKey: 'task_create_feed_order_desc',
     dueDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
-    assignedTo: 'Nguyễn Văn A',
+    assignedTo: '佐藤 太郎',
     type: TaskType.Strategic,
     isCompleted: false,
     origin: 'Khuyến nghị từ Dashboard',
   },
   {
     id: 'T002',
-    title: 'Tiêm phòng cho đàn bò #2',
-    description: 'Dịch tả trâu bò định kỳ',
+    title: '',
+    titleKey: 'task_vaccinate_herd2',
+    description: '',
+    descriptionKey: 'task_vaccinate_herd2_desc',
     dueDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
-    assignedTo: 'Trần Thị B',
+    assignedTo: '鈴木 花子',
     type: TaskType.Routine,
     isCompleted: true,
   },
   {
     id: 'T003',
-    title: 'Vệ sinh chuồng trại khu B',
-    description: 'Khử mùi và sát khuẩn',
+    title: '',
+    titleKey: 'task_clean_barn_b',
+    description: '',
+    descriptionKey: 'task_clean_barn_b_desc',
     dueDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
-    assignedTo: 'Lê Văn C',
+    assignedTo: '田中 健',
     type: TaskType.Routine,
     isCompleted: false,
   },
@@ -161,14 +167,14 @@ export const tasks: Task[] = [
 export const orders: Order[] = [
   {
     id: 'O-00045',
-    customerName: 'Nhà máy ABC',
+    customerName: 'ABC工場',
     products: [
-      { name: 'Sữa tươi 1L', nameKey: 'milk_bottle_1l', quantity: 1200, unit: 'chai' } as OrderProduct,
+      { name: '牛乳1L', nameKey: 'milk_bottle_1l', quantity: 1200, unit: 'chai' } as OrderProduct,
     ],
     deliveryDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2),
-    address: 'KCN Tân Bình, TP.HCM',
+    address: '東京都大田区',
     status: OrderStatus.Confirmed,
-    notes: 'Ưu tiên giao buổi sáng',
+    notes: '午前中納品を優先',
     history: [
       { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1), status: OrderStatus.New },
       { date: new Date(today.getFullYear(), today.getMonth(), today.getDate()), status: OrderStatus.Confirmed },
@@ -176,12 +182,12 @@ export const orders: Order[] = [
   },
   {
     id: 'O-00046',
-    customerName: 'Cửa hàng Sữa Xanh',
+    customerName: 'ミルクショップ青',
     products: [
-      { name: 'Sữa tươi 1L', nameKey: 'milk_bottle_1l', quantity: 300, unit: 'chai' },
+      { name: '牛乳1L', nameKey: 'milk_bottle_1l', quantity: 300, unit: 'chai' },
     ],
     deliveryDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
-    address: 'Q.1, TP.HCM',
+    address: '北海道札幌市',
     status: OrderStatus.Preparing,
     history: [
       { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1), status: OrderStatus.New },
@@ -195,8 +201,8 @@ export const orders: Order[] = [
 export const users: User[] = [
   {
     id: 'U001',
-    fullName: 'Quản lý Trang trại',
-    email: 'manager@farm.local',
+    fullName: '佐藤 太郎',
+    email: 'sato.taro@farm.local',
     role: 'Quản lý' as any,
     createdAt: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 30),
     status: 'Active',
@@ -204,16 +210,16 @@ export const users: User[] = [
   },
   {
     id: 'U002',
-    fullName: 'Nguyễn Văn A',
-    email: 'a@farm.local',
+    fullName: '鈴木 花子',
+    email: 'suzuki.hanako@farm.local',
     role: 'Nhân viên' as any,
     createdAt: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 20),
     status: 'Active',
   },
   {
     id: 'U003',
-    fullName: 'Trần Thị B',
-    email: 'b@farm.local',
+    fullName: '田中 健',
+    email: 'tanaka.ken@farm.local',
     role: 'Nhân viên' as any,
     createdAt: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 10),
     status: 'Inactive',
@@ -227,7 +233,7 @@ export const notifications: AppNotification[] = [
     title: '', titleKey: 'farm_alert_cow_drop',
     description: '', descKey: 'farm_alert_cow_drop_desc', params: { impact: 50 },
     date: new Date(),
-    type: 'Cảnh báo',
+    type: 'Alert',
     isRead: false,
   },
   {
@@ -235,7 +241,7 @@ export const notifications: AppNotification[] = [
     title: '', titleKey: 'farm_alert_feed_low',
     description: '', descKey: 'farm_alert_feed_low_desc',
     date: new Date(),
-    type: 'Nhắc nhở',
+    type: 'Reminder',
     isRead: false,
   },
 ]
@@ -263,9 +269,9 @@ export const reportSupplyDemand = Array.from({ length: 30 }).map((_, i) => {
 })
 
 export const employeePerformance = [
-  { name: 'Nguyễn Văn A', tasks: 18 },
-  { name: 'Trần Thị B', tasks: 22 },
-  { name: 'Lê Văn C', tasks: 15 },
+  { name: '佐藤 太郎', tasks: 18 },
+  { name: '鈴木 花子', tasks: 22 },
+  { name: '田中 健', tasks: 15 },
 ]
 
 // --- Aggregated Weekly / Monthly Reports --------------------------------
@@ -345,21 +351,21 @@ export const getDashboardMetrics = (): DashboardMetrics => {
   const allocatedDemandForecast = 24200
   const gaugeStatus: DashboardMetrics['supplyDemand']['gaugeStatus'] =
     farmSupplyForecast > allocatedDemandForecast + 500
-      ? 'Dư thừa'
+      ? 'Surplus'
       : farmSupplyForecast + 500 < allocatedDemandForecast
-      ? 'Thiếu hụt'
-      : 'Cân bằng'
+      ? 'Shortage'
+      : 'Balanced'
 
   const recommendations: Recommendation[] =
-    gaugeStatus === 'Dư thừa'
+    gaugeStatus === 'Surplus'
       ? [
-          { type: 'Cảnh báo Rủi ro', description: 'Dự báo dư thừa ~1,200 lít trong 5 ngày tới do nhà máy ABC giảm đơn hàng.', descriptionKey: 'rec_surplus' },
-          { type: 'Hành động Đề xuất', description: 'Liên hệ Nhà máy chế biến XYZ (cách 30km), họ đang có nhu cầu sữa bột.', descriptionKey: 'rec_contact_factory', actionLink: '#' },
-          { type: 'Hành động Đề xuất', description: 'Cân nhắc giảm khẩu phần ăn tăng cường cho đàn bò #3 trong 3 ngày tới.', descriptionKey: 'rec_reduce_feed' },
+          { type: 'RiskAlert', description: 'Dự báo dư thừa ~1,200 lít trong 5 ngày tới do nhà máy ABC giảm đơn hàng.', descriptionKey: 'rec_surplus' },
+          { type: 'Action', description: 'Liên hệ Nhà máy chế biến XYZ (cách 30km), họ đang có nhu cầu sữa bột.', descriptionKey: 'rec_contact_factory', actionLink: '#' },
+          { type: 'Action', description: 'Cân nhắc giảm khẩu phần ăn tăng cường cho đàn bò #3 trong 3 ngày tới.', descriptionKey: 'rec_reduce_feed' },
         ]
       : [
-          { type: 'Cơ hội', description: 'Nhu cầu thị trường dự báo tăng mạnh (+15%) vào cuối tuần do thời tiết nắng nóng.', descriptionKey: 'rec_demand_up' },
-          { type: 'Hành động Đề xuất', description: 'Ưu tiên áp dụng khẩu phần ăn tăng sản lượng cho 25 con bò tiềm năng cao nhất.', descriptionKey: 'rec_increase_feed' },
+          { type: 'Opportunity', description: 'Nhu cầu thị trường dự báo tăng mạnh (+15%) vào cuối tuần do thời tiết nắng nóng.', descriptionKey: 'rec_demand_up' },
+          { type: 'Action', description: 'Ưu tiên áp dụng khẩu phần ăn tăng sản lượng cho 25 con bò tiềm năng cao nhất.', descriptionKey: 'rec_increase_feed' },
         ]
 
   const alerts: Alert[] = [

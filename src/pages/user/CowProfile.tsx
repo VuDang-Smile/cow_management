@@ -22,9 +22,9 @@ export default function CowProfile(){
           <div className="card">
             <div className="section-title">{t('identity')}</div>
             <div className="grid" style={{ gridTemplateColumns:'1fr 1fr', gap: 8 }}>
-              <div>Mã số: <b>{cow.id}</b></div>
-              <div>Giống: <b>{cow.breed}</b></div>
-              <div>Ngày sinh: <b>{new Date(cow.birthDate).toLocaleDateString(locale)}</b></div>
+              <div>{t('id')}: <b>{cow.id}</b></div>
+              <div>{t('breed')}: <b>{cow.breed}</b></div>
+              <div>{t('dob')}: <b>{new Date(cow.birthDate).toLocaleDateString(locale)}</b></div>
               <div>{t('origin')}: <b>ABC Farm</b></div>
             </div>
           </div>
@@ -47,7 +47,7 @@ export default function CowProfile(){
           </div>
           <div className="card">
             <div className="section-title">{t('last_activity')}</div>
-            <div className="muted">Steps: <b>{activityStats.steps.toLocaleString()}</b> · Stand/Lie: <b>{activityStats.standHours}h/{activityStats.lieHours}h</b></div>
+            <div className="muted">{t('steps')}: <b>{activityStats.steps.toLocaleString()}</b> · {t('stand_lie')}: <b>{activityStats.standHours}h/{activityStats.lieHours}h</b></div>
           </div>
           <div className="card">
             <div className="section-title">{t('vaccine_history')}</div>
