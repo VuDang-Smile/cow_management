@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Card from '../../components/Card'
 import { userNewsList } from '../../mocks/user'
-import BottomBar from './BottomBar'
 
 export default function NewsDetail(){
   const { id } = useParams()
@@ -46,7 +45,6 @@ export default function NewsDetail(){
           </div>
         </Card>
       </div>
-      <BottomBar />
       <style>{css}</style>
     </div>
   )

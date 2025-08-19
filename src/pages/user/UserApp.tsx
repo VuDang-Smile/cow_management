@@ -12,6 +12,7 @@ import Rank from './Rank'
 import UserProfile from './UserProfile'
 import UserNews from './News'
 import NewsDetail from './NewsDetail'
+import BottomBar from './BottomBar'
 
 export default function UserApp() {
   const location = useLocation()
@@ -46,6 +47,7 @@ export default function UserApp() {
             <Route path="news" element={<UserNews/>} />
             <Route path="news/:id" element={<NewsDetail/>} />
         </Routes>
+        <BottomBar />
       </div>
     </div>
   )

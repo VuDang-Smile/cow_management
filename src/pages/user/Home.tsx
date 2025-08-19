@@ -1,6 +1,5 @@
 import { sampleCowStatus } from '../../mocks/user'
 import { Link } from 'react-router-dom'
-import BottomBar from './BottomBar'
 import { useI18n } from '../../i18n'
 
 const statusColor = {
@@ -57,7 +56,7 @@ export default function UserHome(){
           </div>
         </div>
 
-        <BottomBar />
+        {/* bottom bar moved to UserApp layout */}
       </div>
     </div>
   )

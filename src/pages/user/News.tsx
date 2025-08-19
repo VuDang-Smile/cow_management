@@ -2,7 +2,6 @@ import { useMemo, useState } from 'react'
 import Card from '../../components/Card'
 import { userNewsList } from '../../mocks/user'
 import { useI18n } from '../../i18n'
-import BottomBar from './BottomBar'
 import { Link } from 'react-router-dom'
 
 export default function UserNews(){
@@ -54,7 +53,6 @@ export default function UserNews(){
         </Card>
       </div>
       <style>{css}</style>
-      <BottomBar />
     </div>
   )
 }
