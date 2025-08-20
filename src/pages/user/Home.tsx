@@ -22,6 +22,14 @@ export default function UserHome(){
           <div className="right" />
         </header>
 
+        <div className="tip-card">
+          <div className="icon">💡</div>
+          <div className="content">
+            <div className="title">{t('tip_title')}</div>
+            <div className="text">{new Date().getHours() < 12 ? t('tip_morning_milk') : t('tip_evening_milk')}</div>
+          </div>
+        </div>
+
         <div className="home-grid">
           <div>
             <div className="status-card">
@@ -61,8 +69,4 @@ export default function UserHome(){
     </div>
   )
 }
-
-function BottomBarLegacy() { return null }
-
-
 

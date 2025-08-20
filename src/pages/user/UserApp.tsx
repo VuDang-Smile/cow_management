@@ -47,7 +47,9 @@ export default function UserApp() {
             <Route path="news" element={<UserNews/>} />
             <Route path="news/:id" element={<NewsDetail/>} />
         </Routes>
-        <BottomBar />
+        {location.pathname !== '/user/adopt' && (
+          <BottomBar />
+        )}
       </div>
     </div>
   )
