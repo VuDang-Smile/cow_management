@@ -1,242 +1,84 @@
-import { useState } from 'react'
-import { useI18n } from '../../i18n'
 import Card from '../../components/Card'
+import { cows } from '../../mocks/farm'
+import { CowHealthStatus } from '../../interfaces'
+import { useMemo, useState } from 'react'
+import { useI18n } from '../../i18n'
 
-interface Cow {
-  id: string
-  name: string
-  age: number
-  breed: string
-  healthStatus: 'healthy' | 'sick' | 'recovering'
-  lastCheckup: string
-  weight: number
-  notes: string
-}
+export default function Cows(){
+  const { t, lang } = useI18n()
+  const [health, setHealth] = useState<string>('')
+  const [breed, setBreed] = useState<string>('')
+  const [query, setQuery] = useState<string>('')
+  const [analyzingIds, setAnalyzingIds] = useState<Record<string, boolean>>({})
+  const locale = lang === 'JP' ? 'ja-JP' : 'vi-VN'
 
-interface HealthRecord {
-  id: string
-  cowId: string
-  date: string
-  temperature: number
-  weight: number
-  symptoms: string
-  treatment: string
-  notes: string
-}
-
-export default function Cows() {
-  const { t } = useI18n()
-  const [selectedCow, setSelectedCow] = useState<Cow | null>(null)
-  const [showHealthForm, setShowHealthForm] = useState(false)
-  const [healthRecord, setHealthRecord] = useState<Partial<HealthRecord>>({
-    temperature: 0,
-    weight: 0,
-    symptoms: '',
-    treatment: '',
-    notes: ''
-  })
-
-  const cows: Cow[] = [
-    {
-      id: 'A001',
-      name: '牛 A001',
-      age: 3,
-      breed: 'ホルスタイン',
-      healthStatus: 'healthy',
-      lastCheckup: '2024-01-15',
-      weight: 450,
-      notes: '健康で食欲良好'
-    },
-    {
-      id: 'A002',
-      name: '牛 A002',
-      age: 2,
-      breed: 'ジャージー',
-      healthStatus: 'sick',
-      lastCheckup: '2024-01-14',
-      weight: 380,
-      notes: '経過観察が必要'
-    },
-    {
-      id: 'B001',
-      name: '牛 B001',
-      age: 4,
-      breed: 'ホルスタイン',
-      healthStatus: 'recovering',
-      lastCheckup: '2024-01-13',
-      weight: 420,
-      notes: '治療後回復中'
-    }
-  ]
-
-  const handleHealthSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (selectedCow) {
-      // Thêm bản ghi sức khỏe mới (không xóa dữ liệu cũ)
-      const newRecord: HealthRecord = {
-        ...healthRecord as HealthRecord,
-        id: Date.now().toString(),
-        cowId: selectedCow.id,
-        date: new Date().toISOString().split('T')[0]
-      }
-      console.log('Thêm bản ghi sức khỏe:', newRecord)
-      setShowHealthForm(false)
-      setHealthRecord({
-        temperature: 0,
-        weight: 0,
-        symptoms: '',
-        treatment: '',
-        notes: ''
-      })
-    }
-  }
-
-  const getHealthStatusColor = (status: string) => {
-    switch (status) {
-      case 'healthy': return '🟢'
-      case 'sick': return '🔴'
-      case 'recovering': return '🟡'
-      default: return '⚪'
-    }
-  }
+  const breeds = useMemo(()=> Array.from(new Set(cows.map(c=> c.breed))), [])
+  const filtered = cows.filter(c =>
+    (!health || c.healthStatus === health) &&
+    (!breed || c.breed === breed) &&
+    (!query || c.id.toLowerCase().includes(query.toLowerCase()))
+  )
 
   return (
-    <div className="cows-page">
-      <h1>🐄 {t('staff_cows')}</h1>
-      
-      <div className="grid">
-        {/* Danh sách bò */}
-        <Card title={`📋 ${t('cow_list')}`}>
-          <div className="cow-list">
-            {cows.map(cow => (
-              <div 
-                key={cow.id} 
-                className={`cow-item ${selectedCow?.id === cow.id ? 'selected' : ''}`}
-                onClick={() => setSelectedCow(cow)}
-              >
-                <div className="cow-header">
-                  <span className="cow-id">{cow.id}</span>
-                  <span className="cow-name">{cow.name}</span>
-                  <span className="health-status">
-                    {getHealthStatusColor(cow.healthStatus)} {cow.healthStatus}
-                  </span>
-                </div>
-                <div className="cow-details">
-                  <p>{t('id')}: {cow.age} {t('range_day')} | {t('breed')}: {cow.breed}</p>
-                  <p>{t('weight_label')}: {cow.weight} kg</p>
-                  <p>{t('last_checkup')}: {cow.lastCheckup}</p>
-                  <p>{t('notes_label')}: {cow.notes}</p>
-                </div>
+    <div className="grid" style={{ gap: 16 }}>
+      <Card title={t('filters')} rightSlot={
+        <div className="row" style={{ gap: 8 }}>
+          <input placeholder={t('search_by_id')} value={query} onChange={e=> setQuery(e.target.value)} />
+          <select value={health} onChange={e=> setHealth(e.target.value)}>
+            <option value="">{t('all_health')}</option>
+            {Object.values(CowHealthStatus).map(s=> <option value={s} key={s}>{t(`hs_${s}`)}</option>)}
+          </select>
+          <select value={breed} onChange={e=> setBreed(e.target.value)}>
+            <option value="">{t('all_breeds')}</option>
+            {breeds.map(b=> <option key={b} value={b}>{b}</option>)}
+          </select>
+        </div>
+      }>
+        <div className="grid" style={{ gridTemplateColumns:'repeat(3, 1fr)', gap: 12 }}>
+          {filtered.map(c=> (
+            <div key={c.id} className="card">
+              <div className="row" style={{ justifyContent:'space-between' }}>
+                <div className="section-title">{c.id}</div>
+                <div className="badge green">{c.breed}</div>
               </div>
-            ))}
-          </div>
-        </Card>
-
-        {/* Chi tiết bò và nhập dữ liệu sức khỏe */}
-        {selectedCow && (
-          <Card title={`📊 ${t('cow_details')} ${selectedCow.name}`}>
-            <div className="cow-detail">
-              <div className="cow-info">
-                <h3>{t('basic_info')}</h3>
-                <p><strong>{t('id')}:</strong> {selectedCow.id}</p>
-                <p><strong>{t('name')}:</strong> {selectedCow.name}</p>
-                <p><strong>{t('id')}:</strong> {selectedCow.age} {t('range_day')}</p>
-                <p><strong>{t('breed')}:</strong> {selectedCow.breed}</p>
-                <p><strong>{t('weight_label')}:</strong> {selectedCow.weight} kg</p>
-                <p><strong>{t('health_status')}:</strong> {getHealthStatusColor(selectedCow.healthStatus)} {t(selectedCow.healthStatus)}</p>
-              </div>
-
-              <div className="health-actions">
-                <button 
-                  className="btn btn-primary"
-                  onClick={() => setShowHealthForm(true)}
-                >
-                  📝 {t('health_data_entry')}
-                </button>
-              </div>
-
-              {showHealthForm && (
-                <div className="health-form">
-                  <h4>{t('health_data_entry')}</h4>
-                  <form onSubmit={handleHealthSubmit}>
-                    <div className="form-group">
-                                              <label>{t('temperature_label')}:</label>
-                      <input
-                        type="number"
-                        step="0.1"
-                        value={healthRecord.temperature}
-                        onChange={(e) => setHealthRecord({
-                          ...healthRecord,
-                          temperature: parseFloat(e.target.value)
-                        })}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                                              <label>{t('weight_label')}:</label>
-                      <input
-                        type="number"
-                        step="0.1"
-                        value={healthRecord.weight}
-                        onChange={(e) => setHealthRecord({
-                          ...healthRecord,
-                          weight: parseFloat(e.target.value)
-                        })}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                                              <label>{t('symptoms_label')}:</label>
-                      <textarea
-                        value={healthRecord.symptoms}
-                        onChange={(e) => setHealthRecord({
-                          ...healthRecord,
-                          symptoms: e.target.value
-                        })}
-                        placeholder={t('symptoms_placeholder')}
-                      />
-                    </div>
-                    <div className="form-group">
-                                              <label>{t('treatment_label')}:</label>
-                      <textarea
-                        value={healthRecord.treatment}
-                        onChange={(e) => setHealthRecord({
-                          ...healthRecord,
-                          treatment: e.target.value
-                        })}
-                        placeholder={t('treatment_placeholder')}
-                      />
-                    </div>
-                    <div className="form-group">
-                                              <label>{t('notes_label')}:</label>
-                      <textarea
-                        value={healthRecord.notes}
-                        onChange={(e) => setHealthRecord({
-                          ...healthRecord,
-                          notes: e.target.value
-                        })}
-                        placeholder={t('notes_placeholder')}
-                      />
-                    </div>
-                    <div className="form-actions">
-                      <button type="submit" className="btn btn-success">
-                        💾 {t('save_record')}
-                      </button>
-                      <button 
-                        type="button" 
-                        className="btn btn-secondary"
-                        onClick={() => setShowHealthForm(false)}
+              <div className="muted">{t('dob')}: {new Date(c.birthDate).toLocaleDateString(locale)}</div>
+              <div className="muted">{t('status')}: {t(`hs_${c.healthStatus}`)}</div>
+              <div className="card" style={{ background:'#f9fffb', marginTop:8 }}>
+                <div className="row" style={{ justifyContent:'space-between', marginBottom:4 }}>
+                  <div className="section-title">{t('ai_yield_analysis')}</div>
+                  <div className="right">
+                    {analyzingIds[c.id] ? (
+                      <div className="row">
+                        <div className="spinner" />
+                        <div className="muted">{t('ai_analyzing')}</div>
+                      </div>
+                    ) : (
+                      <button
+                        className="btn success"
+                        onClick={() => {
+                          setAnalyzingIds(prev => ({ ...prev, [c.id]: true }))
+                          setTimeout(() => {
+                            setAnalyzingIds(prev => ({ ...prev, [c.id]: false }))
+                          }, 1500)
+                        }}
                       >
-                        ❌ {t('cancel')}
+                        {t('ai_analyze')}
                       </button>
-                    </div>
-                  </form>
+                    )}
+                  </div>
                 </div>
-              )}
+                <div className="muted">{t('pred_24h')}: <b>{c.predictedMilkNext24h} L</b></div>
+                <div className="muted">{t('potential_7d')}: <b>{c.predictedMilkNext7Days} L</b></div>
+                <div className="muted">{t('factors')}: {c.influencingFactors.map(f=> t(f)).join(', ')}</div>
+              </div>
+              <div className="actions" style={{ marginTop: 8 }}>
+                <button className="btn secondary">+ {t('add_log')}</button>
+                <button className="btn danger">{t('delete')}</button>
+              </div>
             </div>
-          </Card>
-        )}
-      </div>
+          ))}
+        </div>
+      </Card>
     </div>
   )
 }
