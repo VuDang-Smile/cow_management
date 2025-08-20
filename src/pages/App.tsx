@@ -3,6 +3,7 @@ import { } from 'react'
 import { useI18n } from '../i18n'
 import FarmApp from './farm/FarmApp'
 import UserApp from './user/UserApp'
+import StaffApp from './staff/StaffApp'
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Route path="/" element={<HomeLanding/>} />
       <Route path="/farm/*" element={<FarmApp />} />
       <Route path="/user/*" element={<UserApp />} />
+      <Route path="/staff/*" element={<StaffApp />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
@@ -30,9 +32,10 @@ function HomeLanding(){
           <button className={`btn ${lang==='VN'? '' : 'secondary'}`} onClick={()=> setLang('VN')}>VN</button>
           <button className={`btn ${lang==='JP'? '' : 'secondary'}`} onClick={()=> setLang('JP')}>JP</button>
         </div>
-        <div className="grid" style={{ gridTemplateColumns:'1fr 1fr', gap: 12 }}>
+        <div className="grid" style={{ gridTemplateColumns:'1fr 1fr 1fr', gap: 12 }}>
           <Link className="btn" to="/user">{t('entry_user')}</Link>
           <Link className="btn secondary" to="/farm">{t('entry_farm')}</Link>
+          <Link className="btn secondary" to="/staff">👨‍💼 {t('entry_staff')}</Link>
         </div>
       </div>
     </div>

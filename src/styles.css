@@ -99,6 +99,369 @@ a{color:inherit;text-decoration:none}
 .widget-card .label{font-weight:700;color:#4b5563;line-height:1.2}
 .widget-card.link{color:inherit}
 
+/* Staff Portal Styles */
+.staff-portal .appbar .brand {
+  font-weight: 700;
+  color: #16a34a;
+}
+
+/* Dashboard styles */
+.progress-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.progress-stats {
+  flex: 1;
+}
+
+.progress-stats p {
+  margin: 4px 0;
+  font-weight: 600;
+}
+
+.task-list, .inventory-list, .order-list, .notification-list {
+  display: grid;
+  gap: 12px;
+}
+
+.task-item, .inventory-item, .order-item, .notification-item {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.task-item:hover, .inventory-item:hover, .order-item:hover, .notification-item:hover {
+  border-color: #16a34a;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1);
+}
+
+.task-item.selected, .inventory-item.selected, .order-item.selected, .notification-item.selected {
+  border-color: #16a34a;
+  background: #f0fdf4;
+}
+
+.task-header, .inventory-item .item-header, .order-header, .notification-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.task-id, .item-id, .order-number {
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.task-title, .item-name, .notification-title {
+  font-weight: 600;
+  flex: 1;
+  margin: 0 12px;
+}
+
+.task-badges, .order-badges, .notification-badges {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.priority, .status {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.priority.high, .status.overdue {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.priority.medium, .status.in_progress {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.priority.low, .status.completed {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.status.pending {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.task-details, .item-details, .order-details, .notification-content {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.task-details p, .item-details p, .order-details p {
+  margin: 4px 0;
+}
+
+/* Form styles */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* Health form styles */
+.health-form, .update-form, .transaction-form, .status-form {
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 16px;
+}
+
+.health-form h4, .update-form h4, .transaction-form h4, .status-form h4 {
+  margin: 0 0 16px 0;
+  color: #374151;
+}
+
+/* Inventory alerts */
+.inventory-alerts {
+  display: grid;
+  gap: 12px;
+}
+
+.alert-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.alert-info {
+  flex: 1;
+}
+
+.item-name {
+  font-weight: 600;
+  display: block;
+}
+
+.current-stock {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.alert-status {
+  font-weight: 600;
+}
+
+/* Quick notifications */
+.quick-notifications {
+  display: grid;
+  gap: 12px;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.notification-item .icon {
+  font-size: 20px;
+}
+
+/* Filter controls */
+.filter-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* Notification styles */
+.notification-item.unread {
+  border-left: 4px solid #16a34a;
+  background: #f0fdf4;
+}
+
+.notification-item.read {
+  opacity: 0.8;
+}
+
+.unread-badge, .action-badge {
+  font-size: 12px;
+}
+
+/* Permission warning */
+.permission-warning {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  color: #dc2626;
+}
+
+.no-permission {
+  background: #f3f4f6;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Items table */
+.items-table {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.items-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.items-table th,
+.items-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.items-table th {
+  background: #f9fafb;
+  font-weight: 600;
+}
+
+/* No notifications */
+.no-notifications {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+}
+
+/* Notification meta */
+.notification-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.category {
+  background: #f3f4f6;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Notification actions */
+.notification-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn.info {
+  background: #3b82f6;
+}
+
+/* Stock status colors */
+.stock-status {
+  font-weight: 600;
+}
+
+/* Task status colors */
+.task-item.pending {
+  border-left: 4px solid #6b7280;
+}
+
+.task-item.in_progress {
+  border-left: 4px solid #f59e0b;
+}
+
+.task-item.completed {
+  border-left: 4px solid #16a34a;
+}
+
+.task-item.overdue {
+  border-left: 4px solid #dc2626;
+}
+
+/* Order status colors */
+.order-item.pending {
+  border-left: 4px solid #6b7280;
+}
+
+.order-item.confirmed {
+  border-left: 4px solid #16a34a;
+}
+
+.order-item.in_transit {
+  border-left: 4px solid #3b82f6;
+}
+
+.order-item.delivered, .order-item.received {
+  border-left: 4px solid #059669;
+}
+
+.order-item.cancelled {
+  border-left: 4px solid #dc2626;
+}
+
 .bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:8px;width:min(520px,calc(100% - 16px));background:#fff;border:1px solid var(--border);border-radius:20px;padding:8px 10px;display:flex;justify-content:space-around;align-items:center;gap:6px;box-shadow:0 6px 20px rgba(0,0,0,.08);padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
 .bottom-nav .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 6px;border-radius:14px;min-width:60px}
 .bottom-nav .nav-item.active{background:#e7f7ed}
